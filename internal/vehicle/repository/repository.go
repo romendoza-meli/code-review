@@ -13,6 +13,7 @@ type RepositoryVehicle interface {
 	GetByColorAndYear(string, int) ([]*domain.Vehicle, error)
 	GetByWeight(float64, float64) ([]*domain.Vehicle, error)
 	GetByBrand(brand string) ([]*domain.Vehicle, error)
+	GetById(id int) (*domain.Vehicle, error)
 	PatchFuel(id int, fuelType string) error
 	Put(vehicle *domain.Vehicle) error
 	GetByTransmission(transmission string) ([]*domain.Vehicle, error)

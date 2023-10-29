@@ -118,6 +118,17 @@ func (s *RepositoryVehicleInMemory) GetByBrand(brand string) ([]*domain.Vehicle,
 	return nil, ErrRepositoryVehicleNotFound
 }
 
+func (s *RepositoryVehicleInMemory) GetById(id int) (*domain.Vehicle, error) {
+	val, ok := s.db[id]
+	if !ok {
+		return nil, ErrRepositoryVehicleNotFound
+	}
+	return &domain.Vehicle{
+		Id:         id,
+		Attributes: *val,
+	}, nil
+}
+
 func (s *RepositoryVehicleInMemory) PatchFuel(id int, fuelType string) error {
 	val, ok := s.db[id]
 	if !ok {

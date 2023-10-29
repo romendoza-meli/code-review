@@ -76,6 +76,21 @@ type VehicleHandlerGetByTransmission struct {
 	Width        float64 `json:"width"`
 	Weight       float64 `json:"weight"`
 }
+type VehicleHandlerGetById struct {
+	Id           int     `json:"id"`
+	Brand        string  `json:"brand"`
+	Model        string  `json:"model"`
+	Registration string  `json:"registration"`
+	Year         int     `json:"year"`
+	Color        string  `json:"color"`
+	MaxSpeed     int     `json:"max_speed"`
+	FuelType     string  `json:"fuel_type"`
+	Transmission string  `json:"transmission"`
+	Passengers   int     `json:"passengers"`
+	Height       float64 `json:"height"`
+	Width        float64 `json:"width"`
+	Weight       float64 `json:"weight"`
+}
 type VehicleHandlerPutFuel struct {
 	Brand        string  `json:"brand"`
 	Model        string  `json:"model"`

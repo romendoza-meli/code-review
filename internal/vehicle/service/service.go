@@ -15,6 +15,7 @@ type ServiceVehicle interface {
 	SearchByColorAndYear(color string, year int) (v []*domain.Vehicle, err error)
 	GetByWeight(weight float64, weight2 float64) ([]*domain.Vehicle, error)
 	GetAverageCapacityByBrand(brand string) (float64, error)
+	GetById(id int) (*domain.Vehicle, error)
 	PatchFuel(id int, fuelType string) error
 	Put(vehicle *domain.Vehicle) error
 	GetByTransmission(transmission string) ([]*domain.Vehicle, error)

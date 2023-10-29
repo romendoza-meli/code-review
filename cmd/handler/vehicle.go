@@ -252,6 +252,28 @@ func (c *ControllerVehicle) GetAverageCapacityByBrand() gin.HandlerFunc {
 
 	}
 }
+
+func (c *ControllerVehicle) GetById() gin.HandlerFunc {
+	return func(ctx *gin.Context) {
+		idParam := ctx.Param("id")
+		id, err := strconv.Atoi(idParam)
+		if err != nil {
+			httpErr := web.ResponseError{Code: http.StatusBadRequest, Message: "Bad id format"}
+			ctx.JSON(httpErr.Code, httpErr)
+			return
+		}
+		vehicle, err := c.st.GetById(id)
+		if err != nil {
+			httpErr := c.errAdapter(err)
+			ctx.JSON(httpErr.Code, httpErr)
+			return
+		}
+		ctx.JSON(http.StatusOK, c.sm.MapToVehicleHandlerGetById(*vehicle))
+		return
+
+	}
+}
+
 func (c *ControllerVehicle) PatchFuel() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
 		idParam := ctx.Param("id")

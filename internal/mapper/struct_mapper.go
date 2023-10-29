@@ -11,6 +11,7 @@ type StructMapper interface {
 	MapToVehicleHandlerGetByWeight(vehicle domain.Vehicle) web.VehicleHandlerGetByWeight
 	MapFromVehicleHandlerPutFuel(id int, vehicle web.VehicleHandlerPutFuel) *domain.Vehicle
 	MapToVehicleHandlerGetByTransmission(vehicle domain.Vehicle) web.VehicleHandlerGetByTransmission
+	MapToVehicleHandlerGetById(vehicle domain.Vehicle) web.VehicleHandlerGetById
 	MapToVehicleHandlerBatch(vehicles []web.VehicleHandlerPost) []*domain.Vehicle
 	MapToVehicleHandlerPost(vehicles web.VehicleHandlerPost) *domain.Vehicle
 }
@@ -18,8 +19,22 @@ type StructMapper interface {
 type structMapper struct {
 }
 
-func NewStructMapper() StructMapper {
-	return &structMapper{}
+func (sm *structMapper) MapToVehicleHandlerGetById(vehicle domain.Vehicle) web.VehicleHandlerGetById {
+	return web.VehicleHandlerGetById{
+		Id:           vehicle.Id,
+		Brand:        vehicle.Attributes.Brand,
+		Model:        vehicle.Attributes.Model,
+		Registration: vehicle.Attributes.Registration,
+		Year:         vehicle.Attributes.Year,
+		Color:        vehicle.Attributes.Color,
+		MaxSpeed:     vehicle.Attributes.MaxSpeed,
+		FuelType:     vehicle.Attributes.FuelType,
+		Transmission: vehicle.Attributes.Transmission,
+		Passengers:   vehicle.Attributes.Passengers,
+		Height:       vehicle.Attributes.Height,
+		Width:        vehicle.Attributes.Width,
+		Weight:       vehicle.Attributes.Weight,
+	}
 }
 
 func (sm *structMapper) MapToVehicleHandlerGetByDimension(vehicle domain.Vehicle) web.VehicleHandlerGetByDimension {

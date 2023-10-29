@@ -73,6 +73,15 @@ func (s *ServiceVehicleDefault) GetAverageCapacityByBrand(brand string) (float64
 	return float64(count) / float64(len(vehicles)), nil
 }
 
+func (s *ServiceVehicleDefault) GetById(id int) (*domain.Vehicle, error) {
+	v, err := s.rp.GetById(id)
+	if err != nil {
+		return nil, s.errAdapter(err)
+	}
+
+	return v, err
+}
+
 func (s *ServiceVehicleDefault) PatchFuel(id int, fuelType string) error {
 	err := s.rp.PatchFuel(id, fuelType)
 	if err != nil {
