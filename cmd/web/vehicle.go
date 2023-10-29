@@ -1,4 +1,4 @@
-package api
+package web
 
 type VehicleHandlerGetAll struct {
 	Id           int     `json:"id"`
