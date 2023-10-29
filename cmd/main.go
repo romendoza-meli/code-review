@@ -47,6 +47,7 @@ func main() {
 	grVh.GET("/dimensions", ctVh.GetByDimensions())
 	grVh.GET("/weight", ctVh.GetByWeight())
 	grVh.GET("/transmission/:type", ctVh.GetByTransmission())
+	grVh.GET("/:id", ctVh.GetById())
 
 	// run
 	if err := rt.Run(os.Getenv("SERVER_ADDR")); err != nil {

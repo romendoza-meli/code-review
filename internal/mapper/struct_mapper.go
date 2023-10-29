@@ -19,6 +19,10 @@ type StructMapper interface {
 type structMapper struct {
 }
 
+func NewStructMapper() StructMapper {
+	return &structMapper{}
+}
+
 func (sm *structMapper) MapToVehicleHandlerGetById(vehicle domain.Vehicle) web.VehicleHandlerGetById {
 	return web.VehicleHandlerGetById{
 		Id:           vehicle.Id,
